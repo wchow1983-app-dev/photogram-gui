@@ -34,4 +34,31 @@ class PhotosController < ApplicationController
 
     #render({:template => "photo_templates/delete.html.erb"})
   end
+
+  def add
+
+    input_image = params.fetch("query_image")
+    input_caption = params.fetch("query_caption")
+    input_owner_id = params.fetch("query_owner_id")
+  
+    # Create new records using "Photo.new"
+    # Refer to the Schema Information to assign the attribute accessors. For example: "a_new_photo.image = input_image"
+    # Save the record using ".save" to transact the new record: "a_new_photo.save"
+    # We can redirect it to the new photo posting using the photo ID just created from "Photo.new". The unique photo ID 
+    # will automatically generate so we can use it, and include it in the URL in the redirect_to. Remember to convert 
+    # to String because the photo ID is an integer. 
+
+    a_new_photo = Photo.new
+
+    a_new_photo.image = input_image
+    a_new_photo.caption = input_caption
+    a_new_photo.owner_id = input_owner_id
+
+    a_new_photo.save
+
+    redirect_to("/photos/" + a_new_photo.id.to_s)
+
+    #render({:template => "photo_templates/add.html.erb"})
+  end
+
 end

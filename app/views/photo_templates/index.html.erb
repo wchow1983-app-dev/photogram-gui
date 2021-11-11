@@ -1,15 +1,15 @@
 <h1>List of photos</h1>
 
-<form action="/photos/">
+<form action="/insert_photo">
 
   <label for="add_image">Image</label>
-  <input id="add_image" type="text" placeholder="Enter a URL for the image..." name="image">
+  <input id="add_image" type="text" placeholder="Enter a URL for the image..." name="query_image">
 
   <label for="add_caption">Caption</label>
-  <textarea input id="add_caption" type="text" placeholder="Enter a caption for the photo..." name="caption"></textarea>
+  <textarea input id="add_caption" type="text" placeholder="Enter a caption for the photo..." name="query_caption"></textarea>
 
   <label for="add_owner_id">Owner ID</label>
-  <input id="add_owner_id" type="text" placeholder="Enter an ID of a User..." name="owner_id">
+  <input id="add_owner_id" type="text" placeholder="Enter an ID of a User..." name="query_owner_id">
 
   <button>Add photo</button>
 
@@ -51,7 +51,7 @@
             </th>
 
             <th>
-                <%= a_photo.owner_id %>
+                <%= a_photo.poster.username %>
             </th>
 
             <th>
