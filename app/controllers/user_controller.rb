@@ -14,7 +14,7 @@ class UserController < ApplicationController
     the_username = params.fetch("username")
     @the_user = User.where({:username => the_username}).first
 
-    all_users = Photo.all
+    all_photos = Photo.all
 
     render({ :template => "user_templates/show.html.erb"})
   end
