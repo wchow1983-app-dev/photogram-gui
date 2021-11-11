@@ -61,4 +61,29 @@ class PhotosController < ApplicationController
     #render({:template => "photo_templates/add.html.erb"})
   end
 
+  def update
+  
+    # use the params for "photo_id" to reference the photo of interest. 
+    # use "Photo.where" to access the photo database and specific record. 
+
+    the_photo_id = params.fetch("photo_id")
+    
+    the_photo = Photo.where({ :id => the_photo_id }).first
+    
+    # use the params for "query_image" and "query_caption" to reference the new photo we are uploading and caption we are updating. 
+    # similar to creating a new record (lines 53-55), assign the new image and caption to the attribute accessors based on the "photo_id".
+    # save the updated image and comment using ".save" method: "the_photo.save"
+
+    input_image = params.fetch("query_image")
+    input_caption = params.fetch("query_caption")
+   
+    the_photo.image = input_image
+    the_photo.caption = input_caption
+
+    the_photo.save
+
+    #render({:template => "photo_templates/update.html.erb"})
+    
+    redirect_to("/photos/" + the_photo.id.to_s)
+  end
 end
