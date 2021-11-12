@@ -3,27 +3,33 @@
 <dl>
   <dt>Image</dt>
   <dd><img src="<%=@user_photos.image %>"></dd>
+  
   <dt>Caption</dt>
   <dd><%= @user_photos.caption %></dd>
+  
   <dt>Owner</dt>
   <dd><%= @user_photos.poster.username %></dd>
+  
   <dt>Posted</dt>
   <dd><%= @user_photos.created_at %></dd>
+  
   <dt>Edited photo</dt>
   <dd>
-    <form action="/photos/<%= @user_photos.id %>" >
+    <form action="/update_photo/<%= @user_photos.id %>" >
       
       <label for="browser_image">Image</label>
-      <input id="browser_image" type="text" name="query_image" placeholder="Enter a URL for the image..." value=<%= @user_photos.image %>>
+      <input id="browser_image" type="text" placeholder="Enter a URL for the image..." name="query_image" value=<%= @user_photos.image %>>
 
       <label for="browser_caption">Caption</label>
-      <textarea input id="browser_caption" type="text" name="query_caption" placeholder="Enter a caption for the photo..."><%= @user_photos.caption %></textarea>
+      <textarea input id="browser_caption" type="text" placeholder="Enter a caption for the photo..." name="query_caption"><%= @user_photos.caption %></textarea>
 
       <button>Update photo</button>
     </form>
   </dd>
+  
   <dt>Delete photo</dt>
   <dd><a href="/delete_photo/<%= @user_photos.id %>">Delete this photo</a></dd>
+
 </dl>
 
 <h2>Comments</h2>
@@ -43,7 +49,6 @@
     </tr>
   <% end %>
 </table>
-
 
 <h3>Add a new comment</h3>
 

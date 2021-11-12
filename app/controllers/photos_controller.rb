@@ -8,8 +8,8 @@ class PhotosController < ApplicationController
     render({ :template => "photo_templates/index.html.erb"})
   end
 
-# we did not need to use "all_photos = Photo.all" to access the Photo databse because we are already accessing it
-# by using "Photo.where" which is the same thing. 
+    # we did not need to use "all_photos = Photo.all" to access the Photo databse because we are already accessing it
+    # by using "Photo.where" which is the same thing. 
 
   def show
 
@@ -19,8 +19,8 @@ class PhotosController < ApplicationController
     render({:template => "photo_templates/show.html.erb"})
   end
 
-# we did not make the "user_photos" and instance variable (ie "@user_photos") because we want it to enat at the
-# end of this method unit it renders to the views photo template.
+    # we did not make the "user_photos" and instance variable (ie "@user_photos") because we want it to enat at the
+    # end of this method unit it renders to the views photo template.
 
   def delete
 
@@ -62,28 +62,30 @@ class PhotosController < ApplicationController
   end
 
   def update
-  
+
     # use the params for "photo_id" to reference the photo of interest. 
     # use "Photo.where" to access the photo database and specific record. 
 
-    the_photo_id = params.fetch("photo_id")
+    the_photo_id = params.fetch("modify_id")
     
-    the_photo = Photo.where({ :id => the_photo_id }).first
+    the_updated_photo = Photo.where({ :id => the_photo_id }).first
     
     # use the params for "query_image" and "query_caption" to reference the new photo we are uploading and caption we are updating. 
     # similar to creating a new record (lines 53-55), assign the new image and caption to the attribute accessors based on the "photo_id".
-    # save the updated image and comment using ".save" method: "the_photo.save"
+    # save the updated image and comment using ".save" method: "the_updated_photo.save"
 
     input_image = params.fetch("query_image")
     input_caption = params.fetch("query_caption")
    
-    the_photo.image = input_image
-    the_photo.caption = input_caption
+    the_updated_photo.image = input_image
+    the_updated_photo.caption = input_caption
 
-    the_photo.save
+    the_updated_photo.save
 
     #render({:template => "photo_templates/update.html.erb"})
     
-    redirect_to("/photos/" + the_photo.id.to_s)
+    redirect_to("/photos/" + the_updated_photo.id.to_s)
   end
 end
+
+
