@@ -25,7 +25,6 @@ class PhotosController < ApplicationController
   def delete
 
     the_photo = params.fetch("photo_id")
-
     user_photos = Photo.where({ :id => the_photo }).first
 
     user_photos.destroy
@@ -67,7 +66,6 @@ class PhotosController < ApplicationController
     # use "Photo.where" to access the photo database and specific record. 
 
     the_photo_id = params.fetch("modify_id")
-    
     the_updated_photo = Photo.where({ :id => the_photo_id }).first
     
     # use the params for "query_image" and "query_caption" to reference the new photo we are uploading and caption we are updating. 
@@ -85,6 +83,28 @@ class PhotosController < ApplicationController
     #render({:template => "photo_templates/update.html.erb"})
     
     redirect_to("/photos/" + the_updated_photo.id.to_s)
+  end
+
+  def comment
+
+    #{"input_photo_id"=>"951", "input_author_id"=>"", "input_comment"=>"", "photo_id"=>"951"}
+
+    photo_id = params.fetch("input_photo_id")
+    author_id = params.fetch("input_author_id")
+    comment = params.fetch("input_comment")
+
+    new_comment = Comment.new
+
+    new_comment.photo_id = photo_id
+    new_comment.author_id = author_id
+    new_comment.body = comment
+
+    new_comment.save
+
+    #render({:template => "photo_templates/comment.html.erb"})
+    
+    redirect_to("/photos/" + new_comment.photo_id.to_s)
+
   end
 end
 

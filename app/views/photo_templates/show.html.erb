@@ -52,10 +52,10 @@
 
 <h3>Add a new comment</h3>
 
-  <form action="/photos/<%= @user_photos.id %>" >
+  <form action="/add_photos/<%= @user_photos.id %>" >
      
     <label for="photo_id">Photo ID</label>
-    <input id="photo_id" type="text" name="input_photo_id" placeholder=<%= @user_photos.id %> value=<%= @user_photos.image %>>
+    <input id="photo_id" type="text" name="input_photo_id" value=<%= @user_photos.id %>>
 
     <label for="author_id">Author ID</label>
     <input id="author_id" type="text" name="input_author_id">>
